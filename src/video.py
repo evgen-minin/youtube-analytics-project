@@ -1,4 +1,6 @@
 import os
+
+import httplib2.error
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
@@ -22,7 +24,7 @@ class Video:
                 self.url = None
                 self.views = None
                 self.like_count = None
-        except HttpError:
+        except (IndexError, KeyError, HttpError, httplib2.error.ServerNotFoundError):
             self.title = None
             self.url = None
             self.views = None
